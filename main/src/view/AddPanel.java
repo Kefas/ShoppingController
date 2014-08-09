@@ -10,6 +10,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 public class AddPanel extends JPanel {
 	
@@ -21,10 +22,13 @@ public class AddPanel extends JPanel {
 	private JTextField txtItem;
 	private JTextField txtPrice;
 	private JTextField txtDate;
+	private boolean firstClickTxtShop;
+	private boolean firstClickTxtItem;
 	private boolean firstClickTxtPrice;
+	private JButton btnAddEntry;
 	
 	public AddPanel() {
-		setLayout(new MigLayout("", "[grow]", "[][][][][]"));
+		setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
 		
 		txtShop = new JTextField();
 		txtShop.setText("shop");
@@ -48,6 +52,11 @@ public class AddPanel extends JPanel {
 		add(txtDate, "cell 0 4,alignx leading");
 		txtDate.setColumns(10);
 		
+		btnAddEntry = new JButton("Add entry");
+		add(btnAddEntry, "cell 0 5");
+		
+		firstClickTxtShop = true;
+		firstClickTxtItem = true;
 		firstClickTxtPrice = true;
 	}
 
@@ -89,5 +98,29 @@ public class AddPanel extends JPanel {
 
 	public boolean isFirstClickTxtPrice() {
 		return firstClickTxtPrice;
+	}
+
+	public JButton getBtnAddEntry() {
+		return btnAddEntry;
+	}
+
+	public void setBtnAddEntry(JButton btnAddEntry) {
+		this.btnAddEntry = btnAddEntry;
+	}
+
+	public boolean isFirstClickTxtShop() {
+		return firstClickTxtShop;
+	}
+
+	public void setFirstClickTxtShop(boolean firstClickTxtShop) {
+		this.firstClickTxtShop = firstClickTxtShop;
+	}
+
+	public boolean isFirstClickTxtItem() {
+		return firstClickTxtItem;
+	}
+
+	public void setFirstClickTxtItem(boolean firstClickTxtItem) {
+		this.firstClickTxtItem = firstClickTxtItem;
 	}
 }

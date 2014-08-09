@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
+import model.AddEntry;
 import model.Model;
 import view.AddPanel;
 import view.View;
@@ -29,6 +32,56 @@ public class Controller {
 
 	protected void handlerBtnAdd() {
 		view.setChildPanel(new AddPanel());
+		
+		((AddPanel)view.getChildPanel()).getTxtShop().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {			
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {			
+			}
+			
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				handlerAddShopText();
+			}
+		});
+
+		((AddPanel)view.getChildPanel()).getTxtItem().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {			
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {			
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				handlerAddItemText();
+			}
+		});
+
 		((AddPanel)view.getChildPanel()).getTxtPrice().addMouseListener(new MouseListener() {
 			
 			@Override
@@ -51,14 +104,63 @@ public class Controller {
 			public void mouseClicked(MouseEvent e) {
 				handlerAddPriceText();
 			}
+		});	
+		
+		((AddPanel)view.getChildPanel()).getBtnAddEntry().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				handlerBtnAddEntry();
+			}
 		});
 	}
 
+	protected void handlerAddItemText() {
+		
+	}
+
+	protected void handlerAddShopText() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	protected void handlerAddPriceText() {
 		if(((AddPanel)view.getChildPanel()).isFirstClickTxtPrice()){
 			((AddPanel)view.getChildPanel()).getTxtPrice().setText("");
 			((AddPanel)view.getChildPanel()).setFirstClickTxtPrice(false);
 		}
+	}
+
+	protected void handlerBtnAddEntry() {
+		AddPanel addPanel =((AddPanel)view.getChildPanel());
+		AddEntry addEntry = new AddEntry(
+				addPanel.getTxtShop().getText(),
+				addPanel.getTxtItem().getText(),
+				addPanel.getTxtPrice().getText(),
+				addPanel.getTxtDate().getText()
+				);
+		try {
+			model.validateEntry(addEntry);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Validate problem: " + e.getMessage());
+			proceedError("add", e.getMessage());
+			return;
+		}
+		model.saveEntry("temp.txt");
+	}
+
+	private void proceedError(String function, String message) {
+		if("add".equals(function)){
+			if("shop".equals(message))
+				((AddPanel)view.getChildPanel()).getTxtShop().setText("");
+			if("item".equals(message))
+				((AddPanel)view.getChildPanel()).getTxtItem().setText("");
+			if("price".equals(message))
+				((AddPanel)view.getChildPanel()).getTxtPrice().setText("");
+			if("date".equals(message))
+				((AddPanel)view.getChildPanel()).getTxtDate().setText("");
+		}
+			
 	}
 
 }
