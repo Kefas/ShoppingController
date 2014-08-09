@@ -115,15 +115,20 @@ public class Controller {
 		});
 	}
 
-	protected void handlerAddItemText() {
-		
-	}
-
 	protected void handlerAddShopText() {
-		// TODO Auto-generated method stub
-		
+		if(((AddPanel)view.getChildPanel()).isFirstClickTxtShop()){
+			((AddPanel)view.getChildPanel()).getTxtShop().setText("");
+			((AddPanel)view.getChildPanel()).setFirstClickTxtShop(false);
+		}
 	}
 	
+	protected void handlerAddItemText() {
+		if(((AddPanel)view.getChildPanel()).isFirstClickTxtItem()){
+			((AddPanel)view.getChildPanel()).getTxtItem().setText("");
+			((AddPanel)view.getChildPanel()).setFirstClickTxtItem(false);
+		}
+	}
+
 	protected void handlerAddPriceText() {
 		if(((AddPanel)view.getChildPanel()).isFirstClickTxtPrice()){
 			((AddPanel)view.getChildPanel()).getTxtPrice().setText("");
@@ -146,7 +151,7 @@ public class Controller {
 			proceedError("add", e.getMessage());
 			return;
 		}
-		model.saveEntry("temp.txt");
+		model.saveEntry("temp.txt", addEntry);
 	}
 
 	private void proceedError(String function, String message) {

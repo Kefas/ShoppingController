@@ -1,10 +1,25 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Model extends AbstractModel {
 
 	@Override
-	public void saveEntry(String path) {
-		
+	public void saveEntry(String path, AddEntry addEntry)  {
+		FileWriter fileWriter = null;
+		try {
+			fileWriter = new FileWriter(new File(path));
+			fileWriter.append(
+					addEntry.getShop() + "," +
+					addEntry.getItem() + "," + 
+					addEntry.getPrice() + "," + 
+					addEntry.getDate() + ";\n"
+					);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
