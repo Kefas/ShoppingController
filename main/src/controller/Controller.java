@@ -151,7 +151,7 @@ public class Controller {
 			proceedError("add", e.getMessage());
 			return;
 		}
-		model.saveEntry("temp.txt", addEntry);
+		model.saveEntry("C:\\Users\\piotr\\Dysk Google\\zakupy\\item_list.txt", addEntry);
 	}
 
 	private void proceedError(String function, String message) {

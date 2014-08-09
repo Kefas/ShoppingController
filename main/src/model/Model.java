@@ -1,22 +1,24 @@
 package model;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Model extends AbstractModel {
 
 	@Override
 	public void saveEntry(String path, AddEntry addEntry)  {
-		FileWriter fileWriter = null;
-		try {
-			fileWriter = new FileWriter(new File(path));
-			fileWriter.append(
-					addEntry.getShop() + "," +
+		try {	
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)));
+		    out.println(
+		    		addEntry.getShop() + "," +
 					addEntry.getItem() + "," + 
 					addEntry.getPrice() + "," + 
-					addEntry.getDate() + ";\n"
-					);
+					addEntry.getDate() + ";"
+		    		);
+		    out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
