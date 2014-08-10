@@ -1,10 +1,12 @@
 package view;
 
+import java.awt.Color;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -16,15 +18,59 @@ public class AddPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8391818543896719891L;
+	
+	/**
+	 * shop name input
+	 */
 	private JTextField txtShop;
+	
+	/**
+	 * item name input
+	 */
 	private JTextField txtItem;
+	
+	
+	/**
+	 * price input
+	 */
 	private JTextField txtPrice;
+	
+	/**
+	 * date input
+	 */
 	private JTextField txtDate;
+	
+	/**
+	 * is first shop name change
+	 */
 	private boolean firstClickTxtShop;
+	
+	
+	/**
+	 * is first item change
+	 */
 	private boolean firstClickTxtItem;
+	
+	
+	/**
+	 * if first price change
+	 */
 	private boolean firstClickTxtPrice;
+	
+	
+	/**
+	 * add Entry button
+	 */
 	private JButton btnAddEntry;
 	
+	/**
+	 * infor label
+	 */
+	private JLabel info;
+	
+	/**
+	 * AddPanel constructor
+	 */
 	public AddPanel() {
 		setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
 		
@@ -53,11 +99,18 @@ public class AddPanel extends JPanel {
 		btnAddEntry = new JButton("Add entry");
 		add(btnAddEntry, "cell 0 5");
 		
+		info = new JLabel("");
+		add(info, "cell 0 6");
+		
 		firstClickTxtShop = true;
 		firstClickTxtItem = true;
 		firstClickTxtPrice = true;
 	}
 
+	/**
+	 * returns shop JTextField
+	 * @return shop JTextField
+	 */
 	public JTextField getTxtShop() {
 		return txtShop;
 	}
@@ -120,5 +173,29 @@ public class AddPanel extends JPanel {
 
 	public void setFirstClickTxtItem(boolean firstClickTxtItem) {
 		this.firstClickTxtItem = firstClickTxtItem;
+	}
+
+	public void clear() {
+		txtItem.setText("item");
+		txtPrice.setText("0.00");
+		firstClickTxtShop = true;
+		firstClickTxtItem = true;
+		firstClickTxtPrice = true;
+	}
+
+	public JLabel getInfo() {
+		return info;
+	}
+
+	public void setInfo(JLabel info) {
+		this.info = info;
+	}
+
+	public void printInfo(String message, int state) {
+		info.setText(message);
+		if(state == 1)
+			info.setForeground(Color.GREEN);
+		else
+			info.setForeground(Color.RED);
 	}
 }

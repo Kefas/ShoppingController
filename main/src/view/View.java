@@ -12,39 +12,49 @@ import net.miginfocom.swing.MigLayout;
 public class View extends JFrame {
 
 	/**
-	 * 
+	 * generated serial version
 	 */
 	private static final long serialVersionUID = 2118299654730994785L;
 
 	/**
-	 * 
+	 * add button
 	 */
 	private JButton btnAdd;
 	
 	/**
-	 * 
+	 * print button
 	 */
 	private JButton btnPrint;
 	
 	
 	/**
-	 * 
+	 * show button
 	 */
 	private JButton btnShow;
 	
 	
 	/**
-	 * 
+	 * main panel
 	 */
 	private JPanel panel;
 	
 	/**
-	 * 
+	 * childPanel
 	 */
 	private JPanel childPanel;
 	
 	/**
-	 * 
+	 * success code
+	 */
+	static public final int SUCCESS = 1;
+	
+	/**
+	 * failure code
+	 */
+	static public final int FAILURE = 0;
+	
+	/**
+	 * View constructor
 	 */
 	public View(){
 		setTitle("ShoppingController");
@@ -68,7 +78,6 @@ public class View extends JFrame {
 		panel = new JPanel();
 		panel.setBounds(30, 30, 200, 200);
 		getContentPane().add(panel, "cell 0 2 4 4");
-	
 	}
 	
 	/**
@@ -111,10 +120,18 @@ public class View extends JFrame {
 		this.panel = panel;
 	}
 
+	/**
+	 * returns childPanel
+	 * @return childPanel
+	 */
 	public JPanel getChildPanel() {
 		return childPanel;
 	}
 
+	/**
+	 * set childPanel
+	 * @param childPanel
+	 */
 	public void setChildPanel(JPanel childPanel) {
 		this.childPanel = childPanel;
 		this.panel.removeAll();

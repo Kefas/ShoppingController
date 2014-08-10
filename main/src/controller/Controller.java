@@ -147,11 +147,15 @@ public class Controller {
 		try {
 			model.validateEntry(addEntry);
 		} catch (Exception e) {
+			((AddPanel) view.getChildPanel()).printInfo("Item: " + addEntry.getItem() + " hasn't been added!", View.FAILURE);
 			JOptionPane.showMessageDialog(null, "Validate problem: " + e.getMessage());
 			proceedError("add", e.getMessage());
 			return;
 		}
 		model.saveEntry("C:\\Users\\piotr\\Dysk Google\\zakupy\\item_list.txt", addEntry);
+//		model.saveEntry("temp.txt", addEntry);
+		((AddPanel) view.getChildPanel()).clear();
+		((AddPanel) view.getChildPanel()).printInfo("Item: " + addEntry.getItem() + " added succesfully!", View.SUCCESS);
 	}
 
 	private void proceedError(String function, String message) {
@@ -164,8 +168,6 @@ public class Controller {
 				((AddPanel)view.getChildPanel()).getTxtPrice().setText("");
 			if("date".equals(message))
 				((AddPanel)view.getChildPanel()).getTxtDate().setText("");
-		}
-			
+		}	
 	}
-
 }
