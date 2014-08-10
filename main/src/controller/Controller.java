@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.AddEntry;
 import model.Model;
 import view.AddPanel;
+import view.ShowPanel;
 import view.View;
 
 public class Controller {
@@ -28,6 +29,21 @@ public class Controller {
 				handlerBtnAdd();
 			}
 		});
+		
+		view.getBtnShow().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				handlerBtnShow();
+			}
+		});
+	}
+
+	protected void handlerBtnShow() {
+		ShowPanel showPanel = new ShowPanel();
+		showPanel.readFromFile("C:\\Users\\piotr\\Dysk Google\\zakupy\\item_list.txt");
+		view.setChildPanel(showPanel);
+		
 	}
 
 	protected void handlerBtnAdd() {
