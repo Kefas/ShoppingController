@@ -2,6 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 
+import controller.ChartController;
 import controller.Controller;
 import model.Model;
 import view.View;

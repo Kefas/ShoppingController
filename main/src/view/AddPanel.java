@@ -89,7 +89,7 @@ public class AddPanel extends JPanel {
 		add(txtPrice, "cell 0 3,alignx leading");
 		txtPrice.setColumns(10);
 		
-		Format format = new SimpleDateFormat("dd-MM-yy");
+		Format format = new SimpleDateFormat("yy-MM-dd");
 		
 		txtDate = new JTextField();
 		txtDate.setText(format.format(Calendar.getInstance().getTime()));

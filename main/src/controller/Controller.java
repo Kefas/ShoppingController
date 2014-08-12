@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.AddEntry;
 import model.Model;
 import view.AddPanel;
+import view.PrintPanel;
 import view.ShowPanel;
 import view.View;
 
@@ -17,6 +18,7 @@ public class Controller {
 
 	private Model model;
 	private View view;
+	private ChartController chartController;
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -37,6 +39,23 @@ public class Controller {
 				handlerBtnShow();
 			}
 		});
+		
+		view.getBtnPrint().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				handlerBtnPrint();
+			}
+		});
+	}
+
+	protected void handlerBtnPrint() {
+		PrintPanel printPanel = new PrintPanel();
+		this.chartController = new ChartController();
+		chartController.setPrintPanel(printPanel);
+		chartController.printChart();
+		view.setChildPanel(printPanel);
+		
 	}
 
 	protected void handlerBtnShow() {
@@ -45,6 +64,8 @@ public class Controller {
 		view.setChildPanel(showPanel);
 		
 	}
+	
+	
 
 	protected void handlerBtnAdd() {
 		view.setChildPanel(new AddPanel());

@@ -1,16 +1,16 @@
 package view;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.JTextArea;
 
 public class ShowPanel extends JPanel {
 	
@@ -31,7 +31,10 @@ public class ShowPanel extends JPanel {
 		setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
 		textArea = new JTextArea();
-		add(textArea, "cell 0 0,grow");
+//		add(textArea, "cell 0 0,grow");
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setPreferredSize(new Dimension(300,200));
+		add(scrollPane, "cell 0 0,grow");
 	}
 
 	public void readFromFile(String string) {
