@@ -1,9 +1,14 @@
 package view;
 
+import java.util.Map;
+
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
 
 public class PrintPanel extends JPanel {
+	
+	private Map<String, Map<String, ?>> items;
 	
 	/**
 	 * default generate serialVersion
@@ -12,6 +17,16 @@ public class PrintPanel extends JPanel {
 	
 	public PrintPanel() {
 		setLayout(new MigLayout("", "[]", "[]"));
-	} 
+	}
+
+	public Map<String, Map<String, ?>> getItems() {
+		return items;
+	}
+
+	public void setItems(Map<String, Map<String, ?>> items) {
+		this.items = items;
+	}
+
+
 	
 }

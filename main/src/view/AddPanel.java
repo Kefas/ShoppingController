@@ -41,6 +41,16 @@ public class AddPanel extends JPanel {
 	private JTextField txtDate;
 	
 	/**
+	 * category input
+	 */
+	private JTextField txtCategory;
+	
+	/**
+	 * food category input
+	 */
+	private JTextField txtFoodCategory;
+	
+	/**
 	 * is first shop name change
 	 */
 	private boolean firstClickTxtShop;
@@ -64,7 +74,7 @@ public class AddPanel extends JPanel {
 	private JButton btnAddEntry;
 	
 	/**
-	 * infor label
+	 * information label
 	 */
 	private JLabel info;
 	
@@ -72,7 +82,7 @@ public class AddPanel extends JPanel {
 	 * AddPanel constructor
 	 */
 	public AddPanel() {
-		setLayout(new MigLayout("", "[grow]", "[][][][][][]"));
+		setLayout(new MigLayout("", "[grow]", "[][][][][][][][]"));
 		
 		txtShop = new JTextField();
 		txtShop.setText("shop");
@@ -84,23 +94,33 @@ public class AddPanel extends JPanel {
 		add(txtItem, "cell 0 2,alignx leading");
 		txtItem.setColumns(10);
 		
+		Format format = new SimpleDateFormat("yy-MM-dd");
+		
+		txtCategory = new JTextField();
+		txtCategory.setText("category");
+		add(txtCategory, "cell 0 3,alignx left");
+		txtCategory.setColumns(10);
+		
+		txtFoodCategory = new JTextField();
+		txtFoodCategory.setText("food category");
+		add(txtFoodCategory, "cell 0 4,alignx left");
+		txtFoodCategory.setColumns(10);
+		
 		txtPrice = new JTextField();
 		txtPrice.setText("0.00");
-		add(txtPrice, "cell 0 3,alignx leading");
+		add(txtPrice, "cell 0 5,alignx leading");
 		txtPrice.setColumns(10);
 		
-		Format format = new SimpleDateFormat("yy-MM-dd");
+		info = new JLabel("");
+		add(info, "flowx,cell 0 8");
+		
+		btnAddEntry = new JButton("Add entry");
+		add(btnAddEntry, "cell 0 7");
 		
 		txtDate = new JTextField();
 		txtDate.setText(format.format(Calendar.getInstance().getTime()));
-		add(txtDate, "cell 0 4,alignx leading");
+		add(txtDate, "cell 0 6,alignx leading");
 		txtDate.setColumns(10);
-		
-		btnAddEntry = new JButton("Add entry");
-		add(btnAddEntry, "cell 0 5");
-		
-		info = new JLabel("");
-		add(info, "cell 0 6");
 		
 		firstClickTxtShop = true;
 		firstClickTxtItem = true;
@@ -197,5 +217,28 @@ public class AddPanel extends JPanel {
 			info.setForeground(Color.GREEN);
 		else
 			info.setForeground(Color.RED);
+	}
+
+	public JTextField getTxtCategory() {
+		return txtCategory;
+	}
+
+	public void setTxtCategory(JTextField txtCategory) {
+		this.txtCategory = txtCategory;
+	}
+
+	public JTextField getTxtFoodCategory() {
+		return txtFoodCategory;
+	}
+
+	public void setTxtFoodCategory(JTextField txtFoodCategory) {
+		this.txtFoodCategory = txtFoodCategory;
+	}
+
+	public void reset() {
+		txtCategory.setText("category");
+		txtFoodCategory.setText("food category");
+		txtCategory.setEditable(true);
+		txtFoodCategory.setEditable(true);
 	}
 }

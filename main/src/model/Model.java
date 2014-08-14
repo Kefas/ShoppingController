@@ -8,14 +8,16 @@ import java.io.PrintWriter;
 public class Model extends AbstractModel {
 
 	@Override
-	public void saveEntry(String path, AddEntry addEntry)  {
+	public void saveEntry(String path, Item addEntry)  {
 		try {	
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)));
 		    out.println(
 		    		addEntry.getShop() + "," +
-					addEntry.getItem() + "," + 
+		    		addEntry.getCategory() + "," +
+		    		(addEntry.getFoodCategory() != null ? addEntry.getFoodCategory() + "," : "") +
+					addEntry.getName() + "," + 
 					addEntry.getPrice() + "," + 
-					addEntry.getDate() + ";"
+					addEntry.getDate() + ";" 
 		    		);
 		    out.close();
 		} catch (IOException e) {
@@ -29,10 +31,12 @@ public class Model extends AbstractModel {
 		
 	}
 
-	public void validateEntry(AddEntry addEntry) throws Exception {
+	public void validateEntry(Item addEntry) throws Exception {
 		if(addEntry.getShop().isEmpty() || "shop".equals(addEntry.getShop()))
 			throw new Exception("shop");
-		if(addEntry.getItem().isEmpty() || "item".equals(addEntry.getItem()))
+		if(addEntry.getCategory().isEmpty() || "category".equals(addEntry.getCategory()))
+			throw new Exception("category");
+		if(addEntry.getName().isEmpty() || "item".equals(addEntry.getName()))
 			throw new Exception("item");
 		if(addEntry.getPrice().isEmpty())
 			throw new Exception("price");
