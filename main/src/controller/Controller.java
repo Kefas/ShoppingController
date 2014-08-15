@@ -29,7 +29,6 @@ import javax.swing.JOptionPane;
 import model.Item;
 import model.Model;
 import view.AddPanel;
-import view.PrintPanel;
 import view.ShowPanel;
 import view.View;
 
@@ -98,6 +97,10 @@ public class Controller {
 	 * is new shop added
 	 */
 	private boolean addedShop;
+
+	private boolean addedCategory;
+
+	private boolean addedFoodCategory;
 	
 
 	/**Controller constructor
@@ -161,9 +164,9 @@ public class Controller {
 	 * handle exit
 	 */
 	protected void handlerExit() {
-		if(((AddPanel)view.getChildPanel()).isAddedCategory())
+		if(addedCategory)
 			saveCategory(ITEM_TO_CATEGORY_FILE, itemToCategory);
-		if(((AddPanel)view.getChildPanel()).isAddedFoodCategory())
+		if(addedFoodCategory)
 			saveCategory(ITEM_TO_FOOD_CATEGORY_FILE, itemToFoodCategory);
 		if(addedShop)
 			saveShopList(SHOP_FILE, shopList);
@@ -246,12 +249,7 @@ public class Controller {
 	 * handle print button
 	 */
 	protected void handlerBtnPrint() {
-		PrintPanel printPanel = new PrintPanel();
-		this.chartController = new ChartController();
-		chartController.setPrintPanel(printPanel);
-		chartController.printChart();
-		view.setChildPanel(printPanel);
-		
+		this.chartController = new ChartController(model, view);		
 	}
 
 	/**
@@ -453,15 +451,14 @@ public class Controller {
 //		model.saveEntry("temp.txt", addEntry);
 		
 		if(!itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText()))
-			((AddPanel)view.getChildPanel()).setAddedCategory(true);
-		
+			addedCategory = true;	
 		if("food".equals(((AddPanel)view.getChildPanel()).getTxtCategory().getText()))
 			if(!itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText()))
-				((AddPanel)view.getChildPanel()).setAddedFoodCategory(true);
+				addedFoodCategory = true;
 		
-		if(((AddPanel)view.getChildPanel()).isAddedCategory())
+		if(addedCategory)
 			itemToCategory.put(addEntry.getName(), addEntry.getCategory());
-		if(((AddPanel)view.getChildPanel()).isAddedFoodCategory())
+		if(addedFoodCategory)
 			itemToFoodCategory.put(addEntry.getName(), addEntry.getFoodCategory());
 		if(!contain(shopList, addEntry.getShop())){
 			addedShop = true;

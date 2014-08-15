@@ -58,7 +58,7 @@ public class View extends JFrame {
 	 */
 	public View(){
 		setTitle("ShoppingController");
-		setSize(460, 320);
+		setSize(820, 640);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(460, 320));
 		getContentPane().setLayout(new MigLayout("", "[55px][59px][59px][]", "[23px][][][][][]"));
@@ -76,7 +76,8 @@ public class View extends JFrame {
 		getContentPane().add(btnShow, "cell 2 0,grow");
 		
 		panel = new JPanel();
-		panel.setBounds(30, 30, 200, 200);
+//		panel.setBounds(30, 30, 780, 600);
+//		panel.setPreferredSize(new Dimension(500,400));
 		getContentPane().add(panel, "cell 0 2 4 4");
 	}
 	

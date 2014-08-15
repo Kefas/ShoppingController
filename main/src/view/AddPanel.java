@@ -78,16 +78,6 @@ public class AddPanel extends JPanel {
 	private boolean firstClickTxtFoodCategory;
 	
 	/**
-	 * is new category added
-	 */
-	private boolean addedCategory;
-	
-	/**
-	 * is new food category added
-	 */
-	private boolean addedFoodCategory;
-	
-	/**
 	 * add Entry button
 	 */
 	private JButton btnAddEntry;
@@ -284,21 +274,5 @@ public class AddPanel extends JPanel {
 
 	public void setFirstClickTxtFoodCategory(boolean firstClickTxtFoodCategory) {
 		this.firstClickTxtFoodCategory = firstClickTxtFoodCategory;
-	}
-
-	public boolean isAddedCategory() {
-		return addedCategory;
-	}
-
-	public void setAddedCategory(boolean addedCategory) {
-		this.addedCategory = addedCategory;
-	}
-
-	public boolean isAddedFoodCategory() {
-		return addedFoodCategory;
-	}
-
-	public void setAddedFoodCategory(boolean addedFoodCategory) {
-		this.addedFoodCategory = addedFoodCategory;
 	}
 }
