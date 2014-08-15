@@ -146,9 +146,6 @@ public class AddPanel extends JPanel {
 		firstClickTxtPrice = true;
 		firstClickTxtCategory = true;
 		firstClickTxtFoodCategory = true;
-		
-		addedCategory = true;
-		addedFoodCategory = true;
 	}
 
 	/**
@@ -229,6 +226,7 @@ public class AddPanel extends JPanel {
 		firstClickTxtPrice = true;
 		firstClickTxtCategory = true;
 		firstClickTxtFoodCategory = true;
+		
 		txtCategory.setEditable(true);
 		txtFoodCategory.setEditable(true);
 	}
@@ -265,7 +263,7 @@ public class AddPanel extends JPanel {
 		this.txtFoodCategory = txtFoodCategory;
 	}
 
-	public void reset() {
+	public void categoryReset() {
 		txtCategory.setText("category");
 		txtFoodCategory.setText("food category");
 		txtCategory.setEditable(true);

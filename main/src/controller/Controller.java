@@ -378,19 +378,17 @@ public class Controller {
 	 * if item is typed this method look in already added items to find category
 	 */
 	protected void handlerDoneTypingName() {
-		((AddPanel)view.getChildPanel()).reset();
+		((AddPanel)view.getChildPanel()).categoryReset();
 		System.out.println("handlerDoneTypingName");
 		
 		if(itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText())){
 			((AddPanel)view.getChildPanel()).getTxtCategory().setText(itemToCategory.get(((AddPanel)view.getChildPanel()).getTxtItem().getText()));
 			((AddPanel)view.getChildPanel()).getTxtCategory().setEditable(false);
 			((AddPanel)view.getChildPanel()).setFirstClickTxtCategory(false);
-			((AddPanel)view.getChildPanel()).setAddedCategory(false);
 			if("food".equals(((AddPanel)view.getChildPanel()).getTxtCategory().getText())){
 				if(itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText())){
 					((AddPanel)view.getChildPanel()).getTxtFoodCategory().setText(itemToFoodCategory.get(((AddPanel)view.getChildPanel()).getTxtItem().getText()));		
 					((AddPanel)view.getChildPanel()).setFirstClickTxtFoodCategory(false);
-					((AddPanel)view.getChildPanel()).setAddedFoodCategory(false);
 				}
 					
 			}
@@ -455,6 +453,14 @@ public class Controller {
 		
 		model.saveEntry(PATH, addEntry);
 //		model.saveEntry("temp.txt", addEntry);
+		
+		if(!itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText()))
+			((AddPanel)view.getChildPanel()).setAddedCategory(true);
+		
+		if("food".equals(((AddPanel)view.getChildPanel()).getTxtCategory().getText()))
+			if(!itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText()))
+				((AddPanel)view.getChildPanel()).setAddedFoodCategory(true);
+		
 		if(((AddPanel)view.getChildPanel()).isAddedCategory())
 			itemToCategory.put(addEntry.getName(), addEntry.getCategory());
 		if(((AddPanel)view.getChildPanel()).isAddedFoodCategory())
