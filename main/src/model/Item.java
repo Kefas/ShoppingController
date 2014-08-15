@@ -8,9 +8,11 @@ public class Item {
 	private String price;
 	private String date;
 	
-	public Item(String shop, String item, String price, String date){
+	public Item(String shop, String item, String category, String foodCategory, String price, String date){
 		this.shop = shop;
 		this.name = item;
+		this.category = category;
+		this.foodCategory = foodCategory;
 		this.price = price;
 		this.date = date;
 	}

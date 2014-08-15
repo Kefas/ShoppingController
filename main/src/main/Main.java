@@ -2,10 +2,9 @@ package main;
 
 import java.awt.EventQueue;
 
-import controller.ChartController;
-import controller.Controller;
 import model.Model;
 import view.View;
+import controller.Controller;
 
 public class Main {
 
@@ -22,9 +21,11 @@ public class Main {
                 view = new View();
                 view.setVisible(true);
                 controller = new Controller(model, view);
-                
+            
             }
         });
+		
+		
 	}
 
 }

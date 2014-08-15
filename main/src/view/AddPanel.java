@@ -63,10 +63,29 @@ public class AddPanel extends JPanel {
 	
 	
 	/**
-	 * if first price change
+	 * is first price change
 	 */
 	private boolean firstClickTxtPrice;
 	
+	/**
+	 * is first category change
+	 */
+	private boolean firstClickTxtCategory;
+	
+	/**
+	 * is first food category change
+	 */
+	private boolean firstClickTxtFoodCategory;
+	
+	/**
+	 * is new category added
+	 */
+	private boolean addedCategory;
+	
+	/**
+	 * is new food category added
+	 */
+	private boolean addedFoodCategory;
 	
 	/**
 	 * add Entry button
@@ -125,6 +144,11 @@ public class AddPanel extends JPanel {
 		firstClickTxtShop = true;
 		firstClickTxtItem = true;
 		firstClickTxtPrice = true;
+		firstClickTxtCategory = true;
+		firstClickTxtFoodCategory = true;
+		
+		addedCategory = true;
+		addedFoodCategory = true;
 	}
 
 	/**
@@ -198,9 +222,15 @@ public class AddPanel extends JPanel {
 	public void clear() {
 		txtItem.setText("item");
 		txtPrice.setText("0.00");
+		txtCategory.setText("category");
+		txtFoodCategory.setText("food category");
 		firstClickTxtShop = true;
 		firstClickTxtItem = true;
 		firstClickTxtPrice = true;
+		firstClickTxtCategory = true;
+		firstClickTxtFoodCategory = true;
+		txtCategory.setEditable(true);
+		txtFoodCategory.setEditable(true);
 	}
 
 	public JLabel getInfo() {
@@ -240,5 +270,37 @@ public class AddPanel extends JPanel {
 		txtFoodCategory.setText("food category");
 		txtCategory.setEditable(true);
 		txtFoodCategory.setEditable(true);
+	}
+
+	public boolean isFirstClickTxtCategory() {
+		return firstClickTxtCategory;
+	}
+
+	public void setFirstClickTxtCategory(boolean firstClickTxtCategory) {
+		this.firstClickTxtCategory = firstClickTxtCategory;
+	}
+
+	public boolean isFirstClickTxtFoodCategory() {
+		return firstClickTxtFoodCategory;
+	}
+
+	public void setFirstClickTxtFoodCategory(boolean firstClickTxtFoodCategory) {
+		this.firstClickTxtFoodCategory = firstClickTxtFoodCategory;
+	}
+
+	public boolean isAddedCategory() {
+		return addedCategory;
+	}
+
+	public void setAddedCategory(boolean addedCategory) {
+		this.addedCategory = addedCategory;
+	}
+
+	public boolean isAddedFoodCategory() {
+		return addedFoodCategory;
+	}
+
+	public void setAddedFoodCategory(boolean addedFoodCategory) {
+		this.addedFoodCategory = addedFoodCategory;
 	}
 }
