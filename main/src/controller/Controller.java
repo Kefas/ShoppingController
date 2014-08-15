@@ -161,7 +161,6 @@ public class Controller {
 	 * handle exit
 	 */
 	protected void handlerExit() {
-		System.out.println("on exit");
 		if(((AddPanel)view.getChildPanel()).isAddedCategory())
 			saveCategory(ITEM_TO_CATEGORY_FILE, itemToCategory);
 		if(((AddPanel)view.getChildPanel()).isAddedFoodCategory())
@@ -379,7 +378,6 @@ public class Controller {
 	 */
 	protected void handlerDoneTypingName() {
 		((AddPanel)view.getChildPanel()).categoryReset();
-		System.out.println("handlerDoneTypingName");
 		
 		if(itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText())){
 			((AddPanel)view.getChildPanel()).getTxtCategory().setText(itemToCategory.get(((AddPanel)view.getChildPanel()).getTxtItem().getText()));
@@ -475,6 +473,12 @@ public class Controller {
 		((AddPanel) view.getChildPanel()).printInfo("Item: " + addEntry.getName() + " added succesfully!", View.SUCCESS);
 	}
 
+	/**is shopList contains shop
+	 * 
+	 * @param shopList
+	 * @param shop
+	 * @return
+	 */
 	private boolean contain(List<String> shopList, String shop) {
 		boolean shopInList = false;
 		for(String shopName : shopList)
