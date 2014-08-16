@@ -5,6 +5,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JComboBox;
 
 /**
  * @author piotr
@@ -56,6 +57,11 @@ public class PrintPanel extends JPanel {
 	 * button all categories
 	 */
 	private JButton btnAllCategories;
+
+	/**
+	 * combo box food categories
+	 */
+	private JComboBox<String> boxFoodCategories;
 	
 	/**
 	 * constructor PrintPanel
@@ -78,18 +84,21 @@ public class PrintPanel extends JPanel {
 		
 		btnAllCategories = new JButton("All categories");
 		
+		boxFoodCategories = new JComboBox<String>();
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(boxFoodCategories, 0, 97, Short.MAX_VALUE)
 						.addComponent(btnOthers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 						.addComponent(btnFood, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 						.addComponent(btnChemistry, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 						.addComponent(btnAlcohol, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-						.addComponent(btnAllCategories))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnAllCategories, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(156)
@@ -117,7 +126,9 @@ public class PrintPanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnChemistry)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnOthers))
+							.addComponent(btnOthers)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(boxFoodCategories, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(4)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)))
@@ -188,5 +199,13 @@ public class PrintPanel extends JPanel {
 
 	public void setBtnAllCategories(JButton btnAllCategories) {
 		this.btnAllCategories = btnAllCategories;
+	}
+
+	public JComboBox<String> getBoxFoodCategories() {
+		return boxFoodCategories;
+	}
+
+	public void setBoxFoodCategories(JComboBox<String> boxFoodCategories) {
+		this.boxFoodCategories = boxFoodCategories;
 	}
 }

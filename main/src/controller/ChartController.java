@@ -32,6 +32,8 @@ public class ChartController {
 	 * data format
 	 */
 	private Format format;
+
+	private Format fileFormat;
 	
 	/**
 	 * ChartController constructor
@@ -43,86 +45,66 @@ public class ChartController {
 		this.view = view;
 		
 		format = new SimpleDateFormat("MM.yyyy");
+		fileFormat = new SimpleDateFormat("yyMM");
 		
 		printPanel = new PrintPanel();
+		
+		model.actualizeFoodCategory(fileFormat.format(Calendar.getInstance().getTime()) + ".txt");
+		
+		for(String entry : model.getActualFoodCategories())
+			printPanel.getBoxFoodCategories().addItem(entry);
 		
 		printPanel.getBtnAllCategories().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				handlerBtnAllCategories();
+				createChart(Model.ALL_CATEGORIES);
 			}
 		});
 		printPanel.getBtnFood().addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				handlerBtnFood();
+				createChart(Model.FOOD_CATEGORY);
 			}
 		});
 		printPanel.getBtnAlcohol().addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				handlerBtnAlcohol();
+				createChart(Model.ALCOHOL_CATEGORY);
 			}
 		});
 		printPanel.getBtnChemistry().addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				handlerBtnChemistry();
+				createChart(Model.CHEMISTRY_CATEGORY);
 			}
 		});
 		printPanel.getBtnOthers().addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				handlerBtnOthers();
+				createChart(Model.OTHERS_CATEGORY + "Category");
 			}
 		});	
+		printPanel.getBoxFoodCategories().addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				createChart((String)printPanel.getBoxFoodCategories().getSelectedItem());
+			}
+		});
 		
 		view.setChildPanel(printPanel);
 	}
 	
-	protected void handlerBtnAllCategories() {
-		model.createData(Model.ALL_CATEGORIES);
-		model.createChart("All categories " + format.format(Calendar.getInstance().getTime()));
-		addChart();
-	}
-
-	private void addChart() {
+	/**create and add chart category to panel
+	 * 
+	 * @param category
+	 */
+	private void createChart(String category) {
+		model.createData(category);
+		model.createChart(category+ " " + format.format(Calendar.getInstance().getTime()));
 		printPanel.getPanel().setLayout(new BorderLayout());
+		printPanel.getPanel().removeAll();
 		printPanel.getPanel().add(model.getChartPanel(), BorderLayout.CENTER);
 		view.setChildPanel(printPanel);
-	}
-
-	/**
-	 * handle food button
-	 */
-	protected void handlerBtnFood() {
-		model.createData(Model.FOOD_CATEGORY);
-		model.createChart("food" + format.format(Calendar.getInstance().getTime()));
-		addChart();
-	}
-	
-	/**
-	 * handle alcohol button
-	 */
-	protected void handlerBtnAlcohol() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * handle chemistry button
-	 */
-	protected void handlerBtnChemistry() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * handle others button
-	 */
-	protected void handlerBtnOthers() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public PrintPanel getPrintPanel() {
@@ -132,5 +114,4 @@ public class ChartController {
 	public void setPrintPanel(PrintPanel printPanel) {
 		this.printPanel = printPanel;
 	}
-
 }

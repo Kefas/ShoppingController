@@ -9,8 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -52,8 +54,17 @@ public class Model extends AbstractModel {
 	 * map with items and categories
 	 */
 	private Map<String, Double> data;
+	
+	/**
+	 * actual food categories
+	 */
+	private Set<String> actualFoodCategories;
 
+	/**
+	 * chartPanel
+	 */
 	private ChartPanel chartPanel;
+
 
 	@Override
 	public void saveEntry(String path, Item addEntry)  {
@@ -100,6 +111,28 @@ public class Model extends AbstractModel {
 		if(!addEntry.getDate().matches("[0-3][0-9]-[0-1][0-9]-[0-9][0-9]"))
 			throw new Exception("date format");
 	}
+	
+	/**actualize foodCategories array
+	 * 
+	 * @param format
+	 */
+	public void actualizeFoodCategory(String fileName) {
+		actualFoodCategories = new HashSet<String>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(Controller.BASEPATH + fileName));
+			String line;
+			while((line = reader.readLine()) != null){
+				String[] parts = line.split(",");
+				if("food".equals(parts[1]))
+					actualFoodCategories.add(parts[2]);
+			}	
+			reader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**creating data in chosen category
 	 * 
@@ -120,17 +153,28 @@ public class Model extends AbstractModel {
 				else
 					price = parts[3];
 								
-				if(ALL_CATEGORIES.equals(chosenCategory)){
+				if(ALL_CATEGORIES.equals(chosenCategory))
 					partNo = 1;
-				}
 				else
 					partNo = 2;
-		
-				if(ALL_CATEGORIES.equals(chosenCategory) || parts[1].equals(chosenCategory)){
+				
+				if((ALL_CATEGORIES.equals(chosenCategory) || parts[1].equals(chosenCategory) && !parts[1].equals("others") )){
 					if(!data.containsKey(parts[partNo]))
 						data.put(parts[partNo], Double.parseDouble(price));
 					else
 						data.put(parts[partNo], data.get(parts[partNo]) + Double.parseDouble(price));
+				}
+				else if(parts[2].equals(chosenCategory)){
+					if(!data.containsKey(parts[3]))
+						data.put(parts[3], Double.parseDouble(price));
+					else
+						data.put(parts[3], data.get(parts[3]) + Double.parseDouble(price));
+				}
+				else if("othersCategory".equals(chosenCategory) && OTHERS_CATEGORY.equals(parts[1])){
+					if(!data.containsKey(parts[2]))
+						data.put(parts[2], Double.parseDouble(price));
+					else
+						data.put(parts[2], data.get(parts[2]) + Double.parseDouble(price));
 				}
 			}
 			reader.close();
@@ -152,7 +196,7 @@ public class Model extends AbstractModel {
 		for(Entry<String,Double> entry : data.entrySet())
 			defaultPieDataset.setValue(entry.getKey() + String.format("%.2f", entry.getValue()*100/sum) + "% - " + String.format("%.2f", entry.getValue()) + "z³", entry.getValue()*100/sum);
 	
-		JFreeChart chart = ChartFactory.createPieChart(title, defaultPieDataset, true, false, false);
+		JFreeChart chart = ChartFactory.createPieChart(title + " " + String.format("%.2f",sum) + "z³", defaultPieDataset, true, false, false);
 		PiePlot plot = (PiePlot) chart.getPlot();
 		plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
 		plot.setLabelLinkStyle(PieLabelLinkStyle.STANDARD);
@@ -179,4 +223,14 @@ public class Model extends AbstractModel {
 	public ChartPanel getChartPanel() {
 		return chartPanel;
 	}
+
+	public Set<String> getActualFoodCategories() {
+		return actualFoodCategories;
+	}
+
+	public void setActualFoodCategories(Set<String> actualFoodCategories) {
+		this.actualFoodCategories = actualFoodCategories;
+	}
+
+	
 }

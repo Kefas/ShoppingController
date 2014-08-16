@@ -385,12 +385,12 @@ public class Controller {
 				if(itemToCategory.containsKey(((AddPanel)view.getChildPanel()).getTxtItem().getText())){
 					((AddPanel)view.getChildPanel()).getTxtFoodCategory().setText(itemToFoodCategory.get(((AddPanel)view.getChildPanel()).getTxtItem().getText()));		
 					((AddPanel)view.getChildPanel()).setFirstClickTxtFoodCategory(false);
+					((AddPanel)view.getChildPanel()).getTxtFoodCategory().setEditable(false);
 				}
 					
 			}
 			else{
 				((AddPanel)view.getChildPanel()).getTxtFoodCategory().setText("");
-				((AddPanel)view.getChildPanel()).getTxtFoodCategory().setEditable(false);
 			}
 		}
 	}
