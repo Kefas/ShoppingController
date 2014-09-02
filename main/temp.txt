@@ -1,0 +1,16 @@
+biedronka,food,bread,bread,1.18,14-08-14;
+lidl,food,bread,bread,1.19,14-08-15;
+lidl,food,foodia,cos,1.1,14-08-15;
+sklep,food,new,rolls,2.2,14-08-15;
+lidl,food,bread,rolls,2.2,14-08-15;
+lidl,food,vegetables,garlic,2.2,14-08-15;
+lidl,food,vegetables,garlic,1.1,14-08-15;
+lidl,food,vegetables,garlic,1.1,14-08-15;
+lidl,food,vegetables,tomatoes,2.2,14-08-15;
+lidl,food,vegetables,onion,2.2,14-08-15;
+lidl,food,vegetables,garlic,2.2,14-08-15;
+lidl,food,vegetables,tomatoes,2.2,14-08-15;
+lidl,food,bread,bread,2.2,14-08-15;
+lidl,food,bread,bread,2.2,14-08-15;
+lidl,food,fruits,grapes,7.98,14-08-15;
+lidl,food,vegetables,tomatoes,3.3,14-08-15;
